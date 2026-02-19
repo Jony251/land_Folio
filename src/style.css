@@ -224,6 +224,33 @@ html[data-theme='dark'] .hero-avatar {
   background-position: center;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-soft);
+  transform: translate3d(var(--tx, 0), var(--ty, 0), 0) rotate(var(--rot, 0deg));
+  transition: transform 260ms ease, filter 260ms ease;
+  will-change: transform;
+}
+
+.shot:nth-child(1) {
+  --rot: -4deg;
+  --tx: -6px;
+  --ty: 4px;
+}
+
+.shot:nth-child(2) {
+  --rot: 3deg;
+  --tx: 0px;
+  --ty: -2px;
+}
+
+.shot:nth-child(3) {
+  --rot: -2deg;
+  --tx: 6px;
+  --ty: 6px;
+}
+
+.gallery:hover .shot {
+  --rot: 0deg;
+  --tx: 0px;
+  --ty: 0px;
 }
 
 .shot:hover {

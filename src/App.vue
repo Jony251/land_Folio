@@ -6,6 +6,9 @@ import sunIcon from './assets/sun.svg'
 import moonIcon from './assets/moon.svg'
 import sideHustleLogo from './assets/logo.png'
 import heroAvatar from './assets/dasha_lodo.png'
+import firstPreviewImg from './assets/first_img.png'
+import secondPreviewImg from './assets/secon_img.png'
+import thirdPreviewImg from './assets/therd_img.png'
 
 const lang = ref('en')
 const isRtl = computed(() => lang.value === 'he')
@@ -13,6 +16,12 @@ const theme = ref('light')
 const isDark = computed(() => theme.value === 'dark')
 
 const c = computed(() => CONTENT[lang.value])
+
+const galleryShots = computed(() => [
+  { img: firstPreviewImg, href: '#', label: 'Preview 1' },
+  { img: secondPreviewImg, href: '#', label: 'Preview 2' },
+  { img: thirdPreviewImg, href: '#', label: 'Preview 3' },
+])
 
 const contactEmail = ref('')
 const contactCompany = ref('')
@@ -126,7 +135,7 @@ watch([theme, isDark], () => {
 
         <section class="gallery" aria-label="Preview">
           <a
-            v-for="(shot, i) in c.gallery"
+            v-for="(shot, i) in galleryShots"
             :key="i"
             class="shot"
             :href="shot.href"
