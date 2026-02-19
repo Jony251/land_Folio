@@ -9,6 +9,8 @@ import heroAvatar from './assets/dasha_lodo.png'
 import firstPreviewImg from './assets/first_img.png'
 import secondPreviewImg from './assets/secon_img.png'
 import thirdPreviewImg from './assets/therd_img.png'
+import linkedInIcon from './assets/linkedIn.svg'
+import gitHubIcon from './assets/gitHub.svg'
 
 const lang = ref('en')
 const isRtl = computed(() => lang.value === 'he')
@@ -22,6 +24,13 @@ const galleryShots = computed(() => [
   { img: secondPreviewImg, href: '#', label: 'Preview 2' },
   { img: thirdPreviewImg, href: '#', label: 'Preview 3' },
 ])
+
+const footerIconFor = (label) => {
+  const key = String(label || '').toLowerCase()
+  if (key === 'linkedin') return linkedInIcon
+  if (key === 'github') return gitHubIcon
+  return ''
+}
 
 const contactEmail = ref('')
 const contactCompany = ref('')
@@ -273,7 +282,10 @@ watch([theme, isDark], () => {
 
         <footer class="footer">
           <div class="footer-links">
-            <a v-for="(l, i) in c.footer.links" :key="i" class="footer-icon" :href="l.href">{{ l.label }}</a>
+            <a v-for="(l, i) in c.footer.links" :key="i" class="footer-icon" :href="l.href" :aria-label="l.label">
+              <img v-if="footerIconFor(l.label)" class="footer-icon-img" :src="footerIconFor(l.label)" alt="" />
+              <span v-else class="sr-only">{{ l.label }}</span>
+            </a>
           </div>
           <div class="footer-copy">
             <template v-if="c.footer.credit?.href">
