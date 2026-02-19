@@ -276,8 +276,7 @@ watch([theme, isDark], () => {
             </button>
           </form>
 
-          <div v-if="contactStatus === 'sent'" class="form-status">Sent.</div>
-          <div v-else-if="contactStatus === 'error'" class="form-status is-error">{{ contactError }}</div>
+          <div v-if="contactStatus === 'error'" class="form-status is-error">{{ contactError }}</div>
         </section>
 
         <footer class="footer">
